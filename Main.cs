@@ -180,14 +180,22 @@ namespace StudentsDiary
 
         private void btnAddPicture_Click(object sender, EventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
-            FileStream fs = new System.IO.FileStream(@"C:\Users\RAPLA\Documents\C sharp\Repo\SDPicrureboxPrD13T6\Picture\ZostanProgrDNet.jpg", FileMode.Open, FileAccess.Read);
-            // FileStream fs = new System.IO.FileStream(@"StudentsDiary\\ZostanProgrDNet.jpg", FileMode.Open, FileAccess.Read);
-            ptbPciture.Image = Image.FromStream(fs);
-            fs.Close();
-            ptbPciture.Visible = true;
-            btnDeletePicture.Visible = true;
+            try
+            {
+                OpenFileDialog open = new OpenFileDialog();
+                open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                FileStream fs = new System.IO.FileStream(@"C:\Users\RAPLA\Documents\C sharp\Repo\SDPicrureboxPrD13T6\Picture\ZostanProgrDNet.jpg", FileMode.Open, FileAccess.Read);
+                //FileStream fs = new System.IO.FileStream(@"StudentsDiary\\ZostanProgrDNet.jpg", FileMode.Open, FileAccess.Read);
+                ptbPciture.Image = Image.FromStream(fs);
+                fs.Close();
+                ptbPciture.Visible = true;
+                btnDeletePicture.Visible = true;
+
+            }
+            catch
+            {
+                MessageBox.Show("Cos poszlo nie tak. Pewnie problem z zaladowaniem zdjecia :(");
+            }
 
         }
 
